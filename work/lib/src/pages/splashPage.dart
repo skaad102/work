@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
-class SplashPage extends StatelessWidget {
+class SplashPage extends StatefulWidget {
   SplashPage({Key key}) : super(key: key);
   static String nameRoute = 'splash';
   static TextStyle font = GoogleFonts.getFont('Montserrat');
+
+  @override
+  _SplashPageState createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
   final heroKey = UniqueKey();
 
   @override

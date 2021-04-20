@@ -20,8 +20,10 @@ class LoginBlock with Validators {
 
   // validar formulario
   //
-  Stream<bool> get formValid =>
-      Rx.combineLatest2(recEmail, recPass, (a, b) => true);
+  Stream<bool> get formValid => Rx.combineLatest2(recEmail, recPass, (a, b) {
+        // _emailController.sink;
+        return true;
+      });
 
   // obterner ultimo stem
   String get email => _emailController.value;
