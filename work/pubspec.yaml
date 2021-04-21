@@ -30,6 +30,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^2.0.0
   rxdart: ^0.26.0
+  provider:
+  graphql_flutter:
 
 
 dev_dependencies:
