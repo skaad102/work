@@ -22,7 +22,7 @@ class _RegPageState extends State<RegPage> {
           color: cgColor,
           child: SingleChildScrollView(
             child: Stack(
-              children: [_caja(), _robot(context)],
+              children: [_robot(context), _caja()],
             ),
           ),
         ),
@@ -63,9 +63,10 @@ class _RegPageState extends State<RegPage> {
   Widget _robot(
     BuildContext context,
   ) {
-    return Positioned(
-      child: Hero(
-        tag: 'robotKey',
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 1200),
+      curve: Curves.bounceIn,
+      child: Positioned(
         child: Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 60),

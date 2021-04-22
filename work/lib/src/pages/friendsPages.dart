@@ -87,12 +87,16 @@ class _FriendsPageState extends State<FriendsPage> {
   }
 
   Widget _personas(BuildContext context, List personas) {
-    return ListView.builder(
-      itemCount: personas.length,
-      itemBuilder: (_, i) {
-        final persona = personas[i];
-        return _persona(context, persona);
-      },
+    return Scrollbar(
+      thickness: 8,
+      isAlwaysShown: true,
+      child: ListView.builder(
+        itemCount: personas.length,
+        itemBuilder: (_, i) {
+          final persona = personas[i];
+          return _persona(context, persona);
+        },
+      ),
     );
   }
 

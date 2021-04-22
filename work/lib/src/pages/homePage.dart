@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 import 'package:work/src/pages/favoritePage.dart';
 import 'package:work/src/pages/friendsPages.dart';
@@ -19,6 +20,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    timeDilation = 3;
     return SafeArea(
       child: Container(
         child: Scaffold(

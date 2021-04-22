@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:work/widgets/formWidget.dart';
 
 class LogPage extends StatefulWidget {
@@ -14,6 +15,7 @@ class _LogPageState extends State<LogPage> {
 
   @override
   Widget build(BuildContext context) {
+    timeDilation = 3;
     return Scaffold(
       body: SafeArea(
         child: Container(
