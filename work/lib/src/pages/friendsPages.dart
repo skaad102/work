@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-void prov() async {
-  await initHiveForFlutter();
+class FriendsPage extends StatefulWidget {
+  @override
+  _FriendsPageState createState() => _FriendsPageState();
 }
 
-class FriendsPage extends StatelessWidget {
+class _FriendsPageState extends State<FriendsPage> {
   @override
   Widget build(BuildContext context) {
-    prov();
     final HttpLink uri = HttpLink(
       'https://graphqlzero.almansi.me/api',
     );
@@ -52,18 +52,20 @@ class FriendsPage extends StatelessWidget {
             child: Query(
                 options: QueryOptions(
                   document: gql(getPerson),
-                  pollInterval: Duration(seconds: 10),
+                  // pollInterval: Duration(seconds: 10),
                 ),
                 builder: (QueryResult result,
                     {VoidCallback refetch, FetchMore fetchMore}) {
+                  // errores
                   if (result.hasException) {
                     return Text(result.exception.toString());
                   }
+                  // cargando
                   if (result.isLoading) {
                     return Center(child: CircularProgressIndicator());
                   }
+                  // ok
                   List personas = result.data["users"]["data"];
-
                   return _personas(context, personas);
                 }),
           )
@@ -72,7 +74,6 @@ class FriendsPage extends StatelessWidget {
     );
   }
 
-// Titulo principal
   Widget _titulo(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
@@ -85,7 +86,6 @@ class FriendsPage extends StatelessWidget {
     );
   }
 
-  // cosntructor de la lista de personas
   Widget _personas(BuildContext context, List personas) {
     return ListView.builder(
       itemCount: personas.length,
@@ -96,7 +96,6 @@ class FriendsPage extends StatelessWidget {
     );
   }
 
-  // item persona
   Widget _persona(BuildContext context, dynamic persona) {
     // leading imagen
     final image = Container(
@@ -117,9 +116,9 @@ class FriendsPage extends StatelessWidget {
 
     // nombre de la persona
     final nombre = fontfuntion(
-        context, persona['name'], Colors.black, 16, FontWeight.bold);
+        context, persona['name'], Colors.black, 15, FontWeight.bold);
     final subtitulo = fontfuntion(
-        context, persona['email'], Colors.black54, 13, FontWeight.normal);
+        context, persona['email'], Colors.black54, 12, FontWeight.normal);
 
     return Container(
       decoration: BoxDecoration(
@@ -144,7 +143,6 @@ class FriendsPage extends StatelessWidget {
     );
   }
 
-  // Cambiar estilos de los TEXT
   Widget fontfuntion(BuildContext context, String txt, Color color, double tam,
       FontWeight fontWeight) {
     return Text(
