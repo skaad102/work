@@ -12,15 +12,15 @@ class Validators {
 
   final validarEmail =
       StreamTransformer<String, String>.fromHandlers(handleData: (email, sink) {
-    Pattern pattern =
-        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    // Pattern pattern =
+    //     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
 
-    RegExp regExp = RegExp(pattern);
+    // RegExp regExp = RegExp(pattern);
 
-    if (regExp.hasMatch(email)) {
+    if (email.length > 2) {
       sink.add(email);
     } else {
-      sink.addError('Email incorrecto');
+      sink.addError('usuaria incorrecto');
     }
   });
 }
