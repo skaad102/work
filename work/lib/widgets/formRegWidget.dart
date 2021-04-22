@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:work/block/logingBlock.dart';
 import 'package:work/block/providerBlock.dart';
@@ -6,14 +5,14 @@ import 'package:work/providers/usuarioProvider.dart';
 import 'package:work/src/pages/homePage.dart';
 import 'package:work/utils/mesUtils.dart';
 
-class FormWidget extends StatefulWidget {
-  FormWidget({Key key}) : super(key: key);
+class FormRegWidget extends StatefulWidget {
+  FormRegWidget({Key key}) : super(key: key);
 
   @override
-  _FormWidgetState createState() => _FormWidgetState();
+  _FormRegWidgetState createState() => _FormRegWidgetState();
 }
 
-class _FormWidgetState extends State<FormWidget> {
+class _FormRegWidgetState extends State<FormRegWidget> {
   final userProvider = UsuarioProvider();
   @override
   Widget build(BuildContext context) {
@@ -93,7 +92,7 @@ class _FormWidgetState extends State<FormWidget> {
                     primary: cgColor,
                   ),
                   child: Text(
-                    'SIGN IN',
+                    'REGISTER',
                     style: TextStyle(fontSize: 20),
                   ),
                   onPressed: snapshot.hasData
@@ -106,14 +105,13 @@ class _FormWidgetState extends State<FormWidget> {
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Don't have an acount?"),
+          Text("Do you already have an account?"),
           TextButton(
             child: Text(
-              'SING UP',
+              'SIGN IN',
               style: TextStyle(color: cgColor),
             ),
-            onPressed: () =>
-                Navigator.pushReplacementNamed(context, 'registro'),
+            onPressed: () => Navigator.pushReplacementNamed(context, 'log'),
           )
         ],
       ),
@@ -122,13 +120,13 @@ class _FormWidgetState extends State<FormWidget> {
   }
 
   _nexPage(BuildContext context, LoginBlock block) async {
-    Map info = await userProvider.login(block.email, block.pass);
-    // respuesta esta bien dejame entrear si no, alerta
+    Map info = await userProvider.nuevoUsuario(block.email, block.pass);
+
     if (info['ok']) {
       Navigator.pushAndRemoveUntil(context,
           MaterialPageRoute(builder: (_) => HomePage()), (route) => false);
     } else {
-      mesAlert(context, 'Credenciales invalidas');
+      mesAlert(context, 'Credenciales existentes');
     }
   }
 }

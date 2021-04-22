@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:work/block/validatorBlock.dart';
 import 'package:rxdart/rxdart.dart';
 
