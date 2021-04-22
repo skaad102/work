@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SplashPage extends StatefulWidget {
@@ -12,7 +12,13 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  final heroKey = UniqueKey();
+  @override
+  void initState() {
+    super.initState();
+    obternerPos();
+  }
+
+  bool acces = false;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +37,7 @@ class _SplashPageState extends State<SplashPage> {
                   SizedBox(width: double.infinity, height: size.height * 0.05),
                   _titulo(context),
                   _info(context),
-                  _btnLog(context),
+                  _btnLog(context, acces),
                 ],
               ),
             ],
@@ -41,6 +47,7 @@ class _SplashPageState extends State<SplashPage> {
     );
   }
 
+  // cambiar estilo del texto
   Widget fontfuntion(
     BuildContext context,
     String txt,
@@ -67,6 +74,7 @@ class _SplashPageState extends State<SplashPage> {
     return fontfuntion(context, 'USERAPP', Colors.white, 30);
   }
 
+  // texto de la pagina
   Widget _info(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20),
@@ -78,26 +86,26 @@ class _SplashPageState extends State<SplashPage> {
     );
   }
 
-  Widget _btnLog(BuildContext context) {
+  Widget _btnLog(BuildContext context, bool acces) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 5),
       child: SizedBox(
         width: 200,
         child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(30.0),
-              ),
-              primary: Colors.black,
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(30.0),
             ),
-            child: Text(
-              'IR A LOGIN',
-              style: TextStyle(fontSize: 20),
-            ),
-            onPressed:
-                // snapshot.hasData ? () => _nexPage(context) : null,
-                () =>
-                    Navigator.pushNamed(context, 'log', arguments: {heroKey})),
+            primary: Colors.black,
+          ),
+          child: Text(
+            'IR A LOGIN',
+            style: TextStyle(fontSize: 20),
+          ),
+          onPressed:
+              // snapshot.hasData ? () => _nexPage(context) : null,
+              acces ? () => Navigator.pushNamed(context, 'log') : null,
+        ),
       ),
     );
   }
@@ -118,5 +126,42 @@ class _SplashPageState extends State<SplashPage> {
       bottom: -alto * 0.59,
       right: -ancho * 0.5,
     );
+  }
+
+  Future<Position> obternerPos() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      // Los servicios de ubicación no están habilitados, no continúen
+      // acceder al puesto y solicitar usuarios del
+      // Aplicación para habilitar los servicios de ubicación.
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // Los permisos están denegados, la próxima vez que lo intentes
+        // solicitando permisos nuevamente (aquí también es donde
+        // Android shouldShowRequestPermissionRationale
+        // devolvió verdadero. Según las pautas de Android
+        // su aplicación debería mostrar una interfaz de usuario explicativa ahora.
+        return Future.error('Location permissions are denied');
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      // Los permisos se niegan para siempre, maneje apropiadamente.
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    // Cuando llegamos aquí, se otorgan permisos y podemos
+    // seguir accediendo a la posición del dispositivo.
+    setState(() {
+      acces = true;
+    });
+    return await Geolocator.getCurrentPosition();
   }
 }
