@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Material App',
         debugShowCheckedModeBanner: false,
-        initialRoute: LogPage.nameRoute,
+        initialRoute: SplashPage.nameRoute,
         routes: {
           HomePage.nameRoute: (_) => HomePage(),
           SplashPage.nameRoute: (_) => SplashPage(),
