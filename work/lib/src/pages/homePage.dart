@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var currentPage = 3;
+  var currentPage = 0;
   var pages = [FriendsPage(), MessagePage(), FavoritePage(), ProfilePage()];
 
   @override
