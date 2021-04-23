@@ -5,8 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 class SplashPage extends StatefulWidget {
   SplashPage({Key key}) : super(key: key);
   static String nameRoute = 'splash';
-  static TextStyle font = GoogleFonts.getFont('Montserrat');
-
   @override
   _SplashPageState createState() => _SplashPageState();
 }
@@ -103,7 +101,7 @@ class _SplashPageState extends State<SplashPage> {
             style: TextStyle(fontSize: 20),
           ),
           onPressed:
-              // snapshot.hasData ? () => _nexPage(context) : null,
+              // bloquear boton si no dá acceso al gps
               acces ? () => Navigator.pushNamed(context, 'log') : null,
         ),
       ),

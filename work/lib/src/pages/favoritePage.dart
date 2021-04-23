@@ -1,3 +1,7 @@
+// ******
+// Home()-> favoritos()
+// Vista donde el usuario verá las coasa que más le gustarón
+// ******
 import 'package:flutter/material.dart';
 
 class FavoritePage extends StatelessWidget {

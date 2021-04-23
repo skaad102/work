@@ -1,3 +1,6 @@
+// ******
+// Formulario donde el usuario ingresará los credenciales para su registro para posteriormente ir a la pagina de HomePage, en caso de que las credenciales ya existan mostrara una alerta con el error
+// ******
 import 'package:flutter/material.dart';
 import 'package:work/block/logingBlock.dart';
 import 'package:work/block/providerBlock.dart';

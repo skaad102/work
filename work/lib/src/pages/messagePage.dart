@@ -1,3 +1,7 @@
+// ******
+// Home()-> message()
+// Vista donde el usuario verá los mensajes
+// ******
 import 'package:flutter/material.dart';
 
 class MessagePage extends StatelessWidget {

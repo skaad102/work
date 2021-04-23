@@ -1,3 +1,7 @@
+// ******
+// Home()-> profile()
+// Vista donde el usuario verá su perfil principal
+// ******
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {

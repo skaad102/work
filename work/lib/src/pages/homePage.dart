@@ -1,6 +1,10 @@
+// ******
+// Home()
+// Vista principal donde navegará a las distintas paginas
+// friends(),favorits(),messasgs(),profiel()
+// ******
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-
 import 'package:work/src/pages/favoritePage.dart';
 import 'package:work/src/pages/friendsPages.dart';
 import 'package:work/src/pages/messagePage.dart';

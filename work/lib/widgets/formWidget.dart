@@ -1,3 +1,7 @@
+// ******
+// Formulario donde el usuario ingresará los credenciales para su autenticación para posteriormente ir a la pagina de HomePage, en caso de que las credenciales sean invalidas mostrara una alerta con el error
+// ******
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:work/block/logingBlock.dart';

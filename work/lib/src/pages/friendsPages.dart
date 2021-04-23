@@ -1,3 +1,7 @@
+// ******
+// Home()-> friends()
+// Vista donde el usuario verá la lista de amigos o contactos
+// ******
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';

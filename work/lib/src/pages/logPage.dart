@@ -1,3 +1,5 @@
+// ******
+// Esta Vista contiene el fomulario de ingreso
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:work/widgets/formWidget.dart';
@@ -19,7 +21,6 @@ class _LogPageState extends State<LogPage> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          // width: double.infinity,
           height: double.infinity,
           color: cgColor,
           child: SingleChildScrollView(
@@ -34,14 +35,11 @@ class _LogPageState extends State<LogPage> {
 
   Widget _caja() {
     final size = MediaQuery.of(context).size;
-
     return Column(
       children: [
         Container(
           margin: EdgeInsets.only(top: size.height * 0.5),
-
           padding: EdgeInsets.symmetric(vertical: 30),
-          // width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(topLeft: Radius.circular(70)),
             color: Colors.white,
@@ -54,8 +52,6 @@ class _LogPageState extends State<LogPage> {
               )
             ],
           ),
-          // padding: EdgeInsets.only(top: 50),
-
           child: Container(child: FormWidget()),
         ),
       ],

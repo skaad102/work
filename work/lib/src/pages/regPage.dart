@@ -1,3 +1,5 @@
+// ******
+// Esta Vista contiene el fomulario de registro
 import 'package:flutter/material.dart';
 import 'package:work/widgets/formRegWidget.dart';
 
