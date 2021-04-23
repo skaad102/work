@@ -60,9 +60,14 @@ class _FriendsPageState extends State<FriendsPage> {
                 ),
                 builder: (QueryResult result,
                     {VoidCallback refetch, FetchMore fetchMore}) {
-                  // errores
+                  // errores consulta
                   if (result.hasException) {
-                    return Text(result.exception.toString());
+                    return Container(
+                        child: AlertDialog(
+                      title: Text('Tubimos un problema'),
+                      content: Text(
+                          'No pudimos conectarnos con los servicios de graphqlzero'),
+                    ));
                   }
                   // cargando
                   if (result.isLoading) {
